@@ -2,7 +2,30 @@
 
 Your personal Oura wellness desk buddy. A small robot face that reflects your sleep, readiness, activity, and stress — with gentle reminders, not nagging.
 
+![Ouri faces — the full range of moods](.previews/hero.png)
+
+Ouri connects to the [Oura API](https://cloud.ouraring.com/v2/docs) and turns your daily wellness into an expressive 128×64 OLED character: it looks tired after a rough night, nudges you to move when you've been sedentary, celebrates a strong workout, and winds down at bedtime. Built to run on a Raspberry Pi + OLED, but it ships with a Pygame **emulator** so you can develop and demo it with zero hardware.
+
 > **Disclaimer:** Ouri is a wellness companion, not medical advice. Illness signals use temperature deviation and rest mode as soft proxies only.
+
+## How it works
+
+```
+Oura API ──► WellnessSnapshot ──► Rules engine ──► Persona FSM ──► Display
+ (or fixtures)   (normalized        (data → mood     (mood + pet      (face / card
+                  daily data)        + reminder)      + notifications)  on OLED)
+                                          ▲                ▲
+                                       Scheduler ──────────┘
+                                   (daily arc: quiet hours,
+                                    morning briefing, nudges)
+```
+
+- **Data layer** (`api/`) — pulls daily summaries from the Oura API (or local JSON fixtures), normalizes them into a single `WellnessSnapshot`, and caches days locally for trends.
+- **Rules engine** (`engine/`) — pure, testable functions that map a snapshot to a `RobotState` (tired, sick, proud, stressed…) plus a wellness reminder, using tunable thresholds in `config/`.
+- **Persona** (`persona/`) — a finite-state machine that drives animation, handles petting, queues notifications, and runs the **scheduler** that gives Ouri a daily rhythm.
+- **Display & input** (`display/`, `input/`) — a hardware-agnostic interface with two backends: a Pygame OLED **emulator** for your computer and an SSD1306 driver for the Pi. The same app code runs on both.
+
+The whole thing is decoupled behind small protocols, so swapping fixtures for live data, or the emulator for real hardware, is a config change — not a rewrite. Covered by a [pytest](tests/) suite.
 
 ## Quick start (no hardware)
 
@@ -31,6 +54,8 @@ ouri
 
 The screen shows the **animated face** most of the time. When your mood changes (or you switch scenarios), it briefly flips to a **full-screen text card** (~5 seconds) with the wellness reminder, then returns to the face — faces and text never share the screen, so the small OLED stays readable.
 
+![Full-screen message cards](.previews/message_cards.png)
+
 ### Cycle all scenarios
 
 ```bash
@@ -58,9 +83,15 @@ The screen follows a configurable day:
 
 Phases and once-per-day nudges advance live from the clock; in the emulator press `t` to jump the clock forward and watch them fire.
 
+The morning briefing leads with a sleep recap — total time plus a deep/REM/light breakdown:
+
+![Sleep recap card](.previews/sleep_recap.png)
+
 ### 7-day trends
 
 The morning briefing summarizes the past week from recent daily snapshots: a sleep sparkline with an up/down/flat arrow, plus a spoken reaction (good-sleep / activity streaks, or a gentle heads-up when sleep or readiness is sliding). In `fixture` mode the week comes from `data/history.json`; with `sandbox`/`live` it reads the local snapshot cache, backfilling from the Oura API on the first run.
+
+![7-day trend cards](.previews/trend_cards.png)
 
 ## Data sources
 
@@ -120,4 +151,4 @@ config/         Score thresholds
 
 ## License
 
-Personal project — use and modify freely.
+[MIT](LICENSE) © Fiorella Ratti
