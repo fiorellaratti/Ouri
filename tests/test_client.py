@@ -48,6 +48,12 @@ def test_fetch_snapshot_enriched():
         },
         "daily_resilience": {"data": [{"day": "2026-06-14", "level": "strong"}]},
         "workout": {"data": [{"day": "2026-06-14", "intensity": "moderate"}]},
+        "heartrate": {
+            "data": [
+                {"bpm": 70, "timestamp": "2026-06-14T10:00:00+00:00"},
+                {"bpm": 74, "timestamp": "2026-06-14T10:05:00+00:00"},
+            ]
+        },
     }
     snap = asyncio.run(_client(payloads).fetch_snapshot(date(2026, 6, 14)))
 
@@ -59,6 +65,7 @@ def test_fetch_snapshot_enriched():
     assert snap.total_sleep_min == 360
     assert snap.has_sleep_stages
     assert snap.resting_heart_rate == 52
+    assert snap.current_heart_rate == 74  # latest reading
     assert snap.resilience_level == "strong"
     assert snap.workout_intensity == "moderate"
 

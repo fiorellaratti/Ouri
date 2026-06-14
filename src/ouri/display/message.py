@@ -27,6 +27,7 @@ _CATEGORY_LABELS = {
     "greeting": "GOOD MORNING",
     "sleep_recap": "LAST NIGHT",
     "trend_chart": "THIS WEEK",
+    "heartrate": "HEART RATE",
 }
 
 _REPLACEMENTS = {

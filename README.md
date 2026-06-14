@@ -56,6 +56,10 @@ The screen shows the **animated face** most of the time. When your mood changes 
 
 ![Full-screen message cards](.previews/message_cards.png)
 
+**Pet Ouri to check your pulse.** A pet (press `p` or click) makes Ouri read your heart rate — a heart pulses on screen at your live BPM (from the Oura `heartrate` data, falling back to resting HR offline).
+
+![Heart-rate card](.previews/heartrate.png)
+
 ### Cycle all scenarios
 
 ```bash
@@ -113,8 +117,9 @@ Set in `.env` (copy from `.env.example`):
 6. Run `ouri` (live face) or `ouri-day` (fast-forward a full day on your data)
 
 Requested scopes: `daily personal heartrate workout tag spo2Daily`. A live snapshot
-pulls sleep stages + resting heart rate (recap & heartbeat), resilience and the
-latest workout (proud states), and backfills ~7 days of scores for trends.
+pulls sleep stages + resting heart rate (recap & heartbeat), your latest heart rate
+(shown when you pet Ouri), resilience and the latest workout (proud states), and
+backfills ~7 days of scores for trends.
 
 ## Hardware (later)
 

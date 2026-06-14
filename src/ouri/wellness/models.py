@@ -38,6 +38,7 @@ class WellnessSnapshot(BaseModel):
 
     # Extended Oura signals (optional — fixtures/live may omit them)
     resting_heart_rate: int | None = None  # bpm, drives the "alive" heartbeat pulse
+    current_heart_rate: int | None = None  # bpm, latest live reading shown when petted
     resilience_level: str | None = None  # limited|adequate|solid|strong|exceptional
     vo2_max: float | None = None
     workout_intensity: str | None = None  # easy|moderate|hard
@@ -100,6 +101,7 @@ class WellnessReminder(BaseModel):
         "greeting",
         "sleep_recap",
         "trend_chart",
+        "heartrate",
     ] = "sleep"
 
 

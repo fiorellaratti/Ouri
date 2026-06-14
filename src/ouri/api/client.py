@@ -95,6 +95,18 @@ class OuraClient:
         resilience_data = await self._get_optional("daily_resilience", params)
         workout_data = await self._get_optional("workout", params)
 
+        # Latest live-ish heart rate (shown when Ouri is petted).
+        now = datetime.now()
+        hr_data = await self._get_optional(
+            "heartrate",
+            {
+                "start_datetime": (now - timedelta(hours=3)).isoformat(),
+                "end_datetime": now.isoformat(),
+            },
+        )
+        hr_items = hr_data.get("data", [])
+        current_hr = hr_items[-1].get("bpm") if hr_items else None
+
         sleep_item = self._latest_item(sleep_data)
         readiness_item = self._latest_item(readiness_data)
         activity_item = self._latest_item(activity_data)
@@ -132,6 +144,7 @@ class OuraClient:
             steps=(activity_item or {}).get("steps"),
             meters_to_target=(activity_item or {}).get("meters_to_target"),
             resting_heart_rate=resting_hr,
+            current_heart_rate=current_hr,
             resilience_level=(resilience_item or {}).get("level"),
             workout_intensity=(workout_item or {}).get("intensity"),
             sleep_deep_min=_minutes((sleep_period or {}).get("deep_sleep_duration")),

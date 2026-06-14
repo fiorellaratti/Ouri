@@ -26,6 +26,7 @@ STATE_KEYS: dict[str, RobotState] = {
 }
 
 PET_DURATION_SEC = 2.0
+HEARTRATE_CARD_SEC = 3.0
 
 
 class PersonaFSM:
@@ -110,7 +111,20 @@ class PersonaFSM:
             state=RobotState.PET_REACTION,
             priority_reason="pet",
         )
-        self._notifications.push(self._pet_notification())
+        bpm = self.current_bpm()
+        if bpm:
+            self._notifications.push(
+                WellnessReminder(text=f"{bpm} BPM", category="heartrate"),
+                duration=HEARTRATE_CARD_SEC,
+            )
+        else:
+            self._notifications.push(self._pet_notification())
+
+    def current_bpm(self) -> int | None:
+        """Latest heart rate to surface on a pet (live reading, else resting)."""
+        if not self._snapshot:
+            return None
+        return self._snapshot.current_heart_rate or self._snapshot.resting_heart_rate
 
     def _pet_notification(self) -> WellnessReminder | None:
         if self._snapshot and (

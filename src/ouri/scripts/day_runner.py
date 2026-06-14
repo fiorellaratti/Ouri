@@ -17,6 +17,7 @@ from ouri.config import DataSource, load_schedule, load_thresholds, settings
 from ouri.display import (
     create_display,
     render_face,
+    render_heartrate,
     render_message,
     render_sleep_recap,
     render_trend_card,
@@ -114,7 +115,12 @@ def main() -> None:
                 note = persona.current_notification()
                 snap = persona.snapshot
                 trends = persona.trends
-                if note and note.category == "sleep_recap" and snap and snap.has_sleep_stages:
+                if note and note.category == "heartrate" and persona.current_bpm():
+                    label = "card: heart rate"
+                    image = render_heartrate(
+                        display.width, display.height, persona.current_bpm(), persona.frame
+                    )
+                elif note and note.category == "sleep_recap" and snap and snap.has_sleep_stages:
                     label = "card: sleep recap"
                     image = render_sleep_recap(display.width, display.height, snap, persona.frame)
                 elif note and note.category == "trend_chart" and trends and trends.has_data:
