@@ -1,0 +1,21 @@
+# Ouri daily arc — when and what Ouri shows across a day.
+# Times are local "HH:MM". quiet_hours may wrap past midnight.
+
+quiet_hours:
+  start: "22:30"
+  end: "06:30"
+
+# How often to re-fetch wellness data (and advance the time-of-day phase).
+refresh_minutes: 20
+
+# First time you look at Ouri inside this window each day, it plays the briefing.
+morning_window: ["06:00", "11:00"]
+
+# Seconds each briefing card stays up before auto-advancing.
+briefing_card_seconds: 2.5
+
+# Once-per-day nudges fired when their conditions are met.
+beats:
+  bedtime_nudge:
+    near_optimal_bedtime_min: 90
+    once_per_day: true

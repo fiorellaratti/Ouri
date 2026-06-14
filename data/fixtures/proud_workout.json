@@ -1,0 +1,18 @@
+{
+  "day": "2026-06-10",
+  "sleep_score": 82,
+  "readiness_score": 80,
+  "activity_score": 79,
+  "stress_summary": "normal",
+  "temperature_deviation": 0.1,
+  "body_temperature_contributor": 84,
+  "steps": 11200,
+  "meters_to_target": 0,
+  "resting_heart_rate": 54,
+  "workout_intensity": "hard",
+  "vo2_max": 48.0,
+  "resilience_level": "strong",
+  "rest_mode_active": false,
+  "symptom_tags": [],
+  "time_of_day": "afternoon"
+}

@@ -1,0 +1,63 @@
+scores:
+  sleep:
+    poor: 70
+    good: 85
+  readiness:
+    low: 70
+    good: 85
+  activity:
+    low: 60
+    good: 80
+
+temperature:
+  elevated_celsius: 0.5
+  high_celsius: 1.0
+
+body_temperature_contributor:
+  low: 70
+
+# Evening bedtime nudge: sleepy_night triggers within this window of optimal bedtime
+bedtime:
+  window_minutes: 90
+
+# Long-term resilience levels worth a "proud" celebration
+resilience:
+  proud_levels: [strong, exceptional]
+
+# Workout intensities worth a "proud" celebration
+workout:
+  proud_intensities: [moderate, hard]
+
+time_of_day:
+  morning_end_hour: 11
+  afternoon_end_hour: 17
+
+priority:
+  # Higher weight wins when several moods qualify. Tuned per time of day.
+  morning:
+    sleep: 3
+    readiness: 3
+    sick: 5
+    recovering: 4
+    activity: 1
+    stress: 2
+    proud: 2
+    sleepy: 0
+  afternoon:
+    sleep: 1
+    readiness: 1
+    sick: 5
+    recovering: 4
+    activity: 3
+    stress: 3
+    proud: 3
+    sleepy: 0
+  evening:
+    sleep: 2
+    readiness: 2
+    sick: 5
+    recovering: 4
+    activity: 2
+    stress: 3
+    proud: 2
+    sleepy: 4

@@ -1,0 +1,15 @@
+{
+  "day": "2026-06-10",
+  "sleep_score": 74,
+  "readiness_score": 68,
+  "activity_score": 50,
+  "stress_summary": "restored",
+  "temperature_deviation": 0.2,
+  "body_temperature_contributor": 80,
+  "steps": 2200,
+  "meters_to_target": 2500,
+  "resting_heart_rate": 60,
+  "rest_mode_active": true,
+  "symptom_tags": [],
+  "time_of_day": "morning"
+}

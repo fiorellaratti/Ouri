@@ -1,0 +1,9 @@
+[
+  {"day": "2026-06-04", "sleep_score": 70, "readiness_score": 72, "activity_score": 60, "resting_heart_rate": 62},
+  {"day": "2026-06-05", "sleep_score": 73, "readiness_score": 74, "activity_score": 64, "resting_heart_rate": 61},
+  {"day": "2026-06-06", "sleep_score": 78, "readiness_score": 76, "activity_score": 70, "resting_heart_rate": 60},
+  {"day": "2026-06-07", "sleep_score": 82, "readiness_score": 80, "activity_score": 72, "resting_heart_rate": 58},
+  {"day": "2026-06-08", "sleep_score": 86, "readiness_score": 82, "activity_score": 76, "resting_heart_rate": 57},
+  {"day": "2026-06-09", "sleep_score": 88, "readiness_score": 84, "activity_score": 79, "resting_heart_rate": 56},
+  {"day": "2026-06-10", "sleep_score": 90, "readiness_score": 85, "activity_score": 82, "resting_heart_rate": 55}
+]

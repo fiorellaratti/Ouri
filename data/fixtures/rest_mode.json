@@ -1,0 +1,14 @@
+{
+  "day": "2026-06-10",
+  "sleep_score": 70,
+  "readiness_score": 60,
+  "activity_score": 40,
+  "stress_summary": "normal",
+  "temperature_deviation": 0.8,
+  "body_temperature_contributor": 60,
+  "steps": 1200,
+  "meters_to_target": 4000,
+  "rest_mode_active": true,
+  "symptom_tags": ["feeling sick"],
+  "time_of_day": "morning"
+}
