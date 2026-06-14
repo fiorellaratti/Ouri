@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ouri — your wellness desk buddy</title>
+    <meta
+      name="description"
+      content="Ouri is a desk-buddy robot that turns your Oura wellness data into expressive OLED moods. A live, interactive demo."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- nav -->
+    <header class="nav">
+      <div class="wrap nav__inner">
+        <a class="brand" href="#top">
+          <span class="brand__dot"></span> Ouri
+        </a>
+        <nav class="nav__links">
+          <a href="#moods">Moods</a>
+          <a href="#day">A day</a>
+          <a href="#trends">Trends</a>
+          <a href="#build">How it's built</a>
+          <a href="https://github.com/fiorellaratti/Ouri">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- hero -->
+    <main id="top">
+      <section class="hero">
+        <div class="wrap hero__grid">
+          <div>
+            <p class="eyebrow">Oura API · Raspberry Pi · Python</p>
+            <h1>
+              Meet Ouri,<br />your <span class="serif">wellness</span> desk buddy.
+            </h1>
+            <p class="lede">
+              A tiny robot that reads your Oura data and wears it on its face —
+              tired after a rough night, proud of a strong workout, winding down
+              at bedtime. Gentle company for a healthier day, not another
+              dashboard.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="https://github.com/fiorellaratti/Ouri"
+                >View the code</a
+              >
+              <a class="btn btn--ghost" href="#moods">See it feel ↓</a>
+            </div>
+            <p class="hero__note">
+              The screen on the right is the real face engine, running live in
+              your browser. Tap a mood — or pet it.
+            </p>
+          </div>
+
+          <div class="stage">
+            <div class="device">
+              <div class="device__screen">
+                <canvas id="ouri-screen" width="896" height="448"></canvas>
+              </div>
+            </div>
+            <div class="controls">
+              <div class="chips" id="ouri-moods"></div>
+              <div class="controls__row">
+                <button class="btn btn--primary btn--small" id="ouri-pet">
+                  Pet Ouri ♥
+                </button>
+                <label class="switch">
+                  <input type="checkbox" id="ouri-autocycle" checked />
+                  Auto-cycle
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- moods -->
+      <section id="moods" class="band--deep">
+        <div class="wrap">
+          <div class="section__head">
+            <p class="section__eyebrow">Expressive by design</p>
+            <h2>One little face, a <span class="serif">whole range</span> of moods.</h2>
+            <p>
+              Every expression is hand-drawn for a 128×64 monochrome OLED —
+              glossy eyes lead the emotion, with antennae, a soft mouth, and
+              small touches like sleepy z's, proud sparkles, or a worried brow.
+            </p>
+          </div>
+          <div class="moods__img">
+            <img
+              src="img/hero.png"
+              alt="Grid of Ouri's moods: idle, tired, motivate, sick, happy, petted, sleepy, proud, stressed, recovering, asleep"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- a day -->
+      <section id="day">
+        <div class="wrap">
+          <div class="section__head">
+            <p class="section__eyebrow">A daily rhythm</p>
+            <h2>Ouri keeps you <span class="serif">company</span> all day.</h2>
+            <p>
+              A configurable daily arc decides when Ouri sleeps, greets you, and
+              nudges you — so it feels present without being noisy.
+            </p>
+          </div>
+          <div class="timeline">
+            <div class="tl">
+              <div class="tl__time">night</div>
+              <h4>Quiet hours</h4>
+              <p>The screen sleeps with a calm closed-eye face to protect the OLED.</p>
+            </div>
+            <div class="tl">
+              <div class="tl__time">morning</div>
+              <h4>Briefing</h4>
+              <p>A greeting, last night's sleep recap, your 7-day trend, and a reaction.</p>
+            </div>
+            <div class="tl">
+              <div class="tl__time">day</div>
+              <h4>Living mood</h4>
+              <p>Ouri reflects how you're doing and nudges you to move when sedentary.</p>
+            </div>
+            <div class="tl">
+              <div class="tl__time">evening</div>
+              <h4>Wind-down</h4>
+              <p>A gentle nudge as your optimal bedtime approaches.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- sleep recap -->
+      <section class="band--deep">
+        <div class="wrap feature">
+          <div class="feature__media">
+            <img src="img/sleep_recap.png" alt="Sleep recap card with deep, REM and light bars" />
+          </div>
+          <div>
+            <h3>Wake up to a sleep recap</h3>
+            <p>
+              The morning briefing leads with last night at a glance: total time
+              asleep plus a deep / REM / light breakdown drawn as a tidy little
+              bar chart.
+            </p>
+            <ul class="taglist">
+              <li>Deep</li>
+              <li>REM</li>
+              <li>Light</li>
+              <li>Total duration</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- trends -->
+      <section id="trends">
+        <div class="wrap feature feature--reverse">
+          <div class="feature__media">
+            <img src="img/trend_cards.png" alt="7-day sleep trend sparkline cards" />
+          </div>
+          <div>
+            <h3>See the week, not just the day</h3>
+            <p>
+              Ouri reads your last seven days and shows a sparkline with an
+              up / down / flat arrow — then reacts: celebrating a good-sleep
+              streak, or gently flagging when readiness is sliding.
+            </p>
+            <ul class="taglist">
+              <li>Trajectory</li>
+              <li>Streaks</li>
+              <li>Sleep · Readiness · Activity</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- heart rate -->
+      <section class="band--deep">
+        <div class="wrap feature">
+          <div class="feature__media">
+            <img src="img/heartrate.png" alt="Heart-rate card with a pulsing heart and BPM" />
+          </div>
+          <div>
+            <h3>Pet it to check your pulse</h3>
+            <p>
+              Give Ouri a pet and it reads your heart rate — a heart pulses on
+              screen at your live BPM, pulled from Oura's intraday heart-rate
+              data. Try it on the device above.
+            </p>
+            <ul class="taglist">
+              <li>Live heart rate</li>
+              <li>Touch interaction</li>
+              <li>Pulse animation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- reminders -->
+      <section>
+        <div class="wrap feature feature--reverse">
+          <div class="feature__media">
+            <img src="img/message_cards.png" alt="Full-screen wellness message cards" />
+          </div>
+          <div>
+            <h3>Readable reminders, never nagging</h3>
+            <p>
+              When something's worth saying, Ouri flips to a full-screen card
+              with a single, legible message — then returns to its face. Faces
+              and text never share the small screen.
+            </p>
+            <ul class="taglist">
+              <li>Wellness-first</li>
+              <li>One thing at a time</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- how it's built (dark) -->
+      <section id="build" class="dark">
+        <div class="wrap">
+          <div class="section__head">
+            <p class="section__eyebrow">Under the hood</p>
+            <h2>Built to be <span class="serif">swappable</span>.</h2>
+            <p>
+              Clean, testable layers behind small protocols — so trading
+              fixtures for live data, or the emulator for real hardware, is a
+              config change, not a rewrite.
+            </p>
+          </div>
+
+          <div class="flow">
+            <div class="flow__node">
+              <b>Oura API</b><span>or fixtures</span>
+            </div>
+            <div class="flow__node">
+              <b>Snapshot</b><span>normalized data</span>
+            </div>
+            <div class="flow__node">
+              <b>Rules engine</b><span>data → mood</span>
+            </div>
+            <div class="flow__node">
+              <b>Persona FSM</b><span>+ scheduler</span>
+            </div>
+            <div class="flow__node">
+              <b>Display</b><span>OLED / emulator</span>
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="card">
+              <h4>Pure rules engine</h4>
+              <p>
+                Wellness thresholds map a snapshot to a state and a reminder —
+                small functions, fully unit-tested.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Hardware-agnostic display</h4>
+              <p>
+                The same <span class="codepill">render_face</span> code drives a
+                Pygame emulator today and an SSD1306 OLED on a Pi tomorrow.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Real Oura data</h4>
+              <p>
+                OAuth, intraday heart rate, sleep stages, resilience and a
+                7-day backfill for trends — validated on a real ring.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- stats -->
+      <section>
+        <div class="wrap">
+          <div class="stats">
+            <div class="stat"><div class="n">11</div><div class="l">expressive moods</div></div>
+            <div class="stat"><div class="n">44</div><div class="l">passing tests</div></div>
+            <div class="stat"><div class="n">7</div><div class="l">days of trends</div></div>
+            <div class="stat"><div class="n">0</div><div class="l">hardware required</div></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="wrap footer__grid">
+        <div>
+          <a class="brand" href="#top"><span class="brand__dot"></span> Ouri</a>
+          <p style="margin-top: 14px">
+            A personal project exploring what wellness tech feels like when it's
+            warm, expressive, and on your desk.
+          </p>
+        </div>
+        <div>
+          <a class="btn btn--primary" href="https://github.com/fiorellaratti/Ouri"
+            >View on GitHub</a
+          >
+        </div>
+      </div>
+      <div class="wrap">
+        <p class="disclaimer">
+          Built by Fiorella Ratti. Ouri is an independent project and is not
+          affiliated with or endorsed by Ōura Health Oy. Oura and the Oura ring
+          are trademarks of their respective owner. Ouri is a wellness companion,
+          not medical advice.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/ouri.js"></script>
+  </body>
+</html>

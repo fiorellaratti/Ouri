@@ -2,6 +2,8 @@
 
 Your personal Oura wellness desk buddy. A small robot face that reflects your sleep, readiness, activity, and stress — with gentle reminders, not nagging.
 
+### 👉 [Try the live demo](https://fiorellaratti.github.io/Ouri/) — Ouri animates right in your browser.
+
 ![Ouri faces — the full range of moods](.previews/hero.png)
 
 Ouri connects to the [Oura API](https://cloud.ouraring.com/v2/docs) and turns your daily wellness into an expressive 128×64 OLED character: it looks tired after a rough night, nudges you to move when you've been sedentary, celebrates a strong workout, and winds down at bedtime. Built to run on a Raspberry Pi + OLED, but it ships with a Pygame **emulator** so you can develop and demo it with zero hardware.
